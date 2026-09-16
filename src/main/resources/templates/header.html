@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title th:text="${pageTitle} ?: 'VR TYRE'">VR TYRE</title>
+    <title th:text="${pageTitle} ?: 'VR TYRE'">VR輪胎館</title>
 
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
@@ -18,15 +18,15 @@
     <div class="container nav-container">
 
         <a th:href="@{/}" class="logo">
-            VR TYRE
+            VR輪胎館
         </a>
 
         <nav class="main-nav">
-            <a th:href="@{/}">首頁</a>
-            <a href="/#products">產品</a>
-            <a href="/#services">服務</a>
-            <a href="/#about">關於我們</a>
-            <a href="/#contact">聯絡我們</a>
+            <a href="@{/}">首頁</a>
+            <a href="/products">產品</a>
+            <a href="/services">服務</a>
+            <a href="/about">關於我們</a>
+            <a href="/contact">聯絡我們</a>
         </nav>
 
     </div>
