@@ -1,5 +1,5 @@
 #Docker裡用java 21
-FROM eclipse-temurin:21jdk
+FROM eclipse-temurin:21-jdk
 #容器內的工作目錄
 WORKDIR /app
 #github copy進 docker
