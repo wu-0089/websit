@@ -1,10 +1,359 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-TW" xmlns:th="http://www.thymeleaf.org">
+
 <head>
+
     <meta charset="UTF-8">
-    <title>我的第一個 Render 網站</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>VR TYRE</title>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
 </head>
+
 <body>
-    <h1>Hello Render! 網站成功運行了！</h1>
+
+
+    <!-- =========================
+     Header
+========================= -->
+
+    <div th:replace="~{layout/header :: header}"></div>
+
+
+    <!-- =========================
+     Main
+========================= -->
+
+    <main>
+
+
+        <!-- Hero -->
+        <section class="hero">
+
+            <div class="container hero-content">
+
+                <div class="hero-text">
+
+                    <p class="hero-label">
+                        PROFESSIONAL TYRE SOLUTIONS
+                    </p>
+
+                    <h1>
+                        每一段旅程<br>
+                        都值得更好的輪胎
+                    </h1>
+
+                    <p class="hero-description">
+                        提供專業輪胎產品與汽車相關服務，
+                        為每一次行駛帶來安全、穩定與信心。
+                    </p>
+
+                    <div class="hero-buttons">
+
+                        <a href="#products" class="btn btn-primary">
+                            探索產品
+                        </a>
+
+                        <a href="#contact" class="btn btn-secondary">
+                            聯絡我們
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- 暫時用 CSS 圓形代替輪胎圖片 -->
+                <div class="hero-visual">
+
+                    <div class="hero-circle">
+                        <span>TYRE</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+         Products
+    ========================= -->
+
+        <section id="products" class="section section-light">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <p class="section-label">
+                        OUR PRODUCTS
+                    </p>
+
+                    <h2>
+                        產品系列
+                    </h2>
+
+                    <p>
+                        依照不同車型與駕駛需求，
+                        提供適合的輪胎產品。
+                    </p>
+
+                </div>
+
+
+                <div class="product-grid">
+
+
+                    <article class="product-card">
+
+                        <div class="product-icon">
+                            01
+                        </div>
+
+                        <h3>
+                            性能系列
+                        </h3>
+
+                        <p>
+                            著重操控、穩定性與駕駛反應，
+                            適合追求駕駛體驗的車主。
+                        </p>
+
+                        <a href="#">
+                            查看產品 →
+                        </a>
+
+                    </article>
+
+
+                    <article class="product-card">
+
+                        <div class="product-icon">
+                            02
+                        </div>
+
+                        <h3>
+                            舒適系列
+                        </h3>
+
+                        <p>
+                            著重舒適、安靜與日常行駛表現，
+                            適合一般道路使用。
+                        </p>
+
+                        <a href="#">
+                            查看產品 →
+                        </a>
+
+                    </article>
+
+
+                    <article class="product-card">
+
+                        <div class="product-icon">
+                            03
+                        </div>
+
+                        <h3>
+                            SUV 系列
+                        </h3>
+
+                        <p>
+                            適合 SUV 與休旅車使用，
+                            兼顧日常道路與多用途需求。
+                        </p>
+
+                        <a href="#">
+                            查看產品 →
+                        </a>
+
+                    </article>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+         Services
+    ========================= -->
+
+        <section id="services" class="section section-dark">
+
+            <div class="container">
+
+                <div class="section-heading section-heading-dark">
+
+                    <p class="section-label">
+                        OUR SERVICES
+                    </p>
+
+                    <h2>
+                        專業服務
+                    </h2>
+
+                    <p>
+                        從產品選擇到安裝與基本檢查，
+                        提供完整的輪胎相關服務。
+                    </p>
+
+                </div>
+
+
+                <div class="service-grid">
+
+
+                    <div class="service-item">
+
+                        <span class="service-number">
+                            01
+                        </span>
+
+                        <h3>
+                            輪胎選購
+                        </h3>
+
+                        <p>
+                            依車型、使用環境與需求，
+                            協助選擇適合的產品。
+                        </p>
+
+                    </div>
+
+
+                    <div class="service-item">
+
+                        <span class="service-number">
+                            02
+                        </span>
+
+                        <h3>
+                            輪胎安裝
+                        </h3>
+
+                        <p>
+                            提供輪胎拆裝及相關服務。
+                        </p>
+
+                    </div>
+
+
+                    <div class="service-item">
+
+                        <span class="service-number">
+                            03
+                        </span>
+
+                        <h3>
+                            安全檢查
+                        </h3>
+
+                        <p>
+                            協助檢查胎壓、胎紋與輪胎狀況。
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+         About
+    ========================= -->
+
+        <section id="about" class="section section-light">
+
+            <div class="container about-grid">
+
+                <div>
+
+                    <p class="section-label">
+                        ABOUT US
+                    </p>
+
+                    <h2>
+                        專業、可靠、值得信賴
+                    </h2>
+
+                </div>
+
+
+                <div>
+
+                    <p>
+                        VR輪胎館 專注於輪胎產品與汽車相關服務，
+                        致力於提供可靠的產品資訊與專業服務。
+                    </p>
+
+                    <p>
+                        未來將持續建立完整的產品資訊、
+                        車主服務與線上功能。
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+         Contact
+    ========================= -->
+
+        <section id="contact" class="contact-section">
+
+            <div class="container contact-content">
+
+                <div>
+
+                    <p class="section-label">
+                        CONTACT US
+                    </p>
+
+                    <h2>
+                        需要協助嗎？
+                    </h2>
+
+                    <p>
+                        歡迎透過電話或 Email 與我們聯絡。
+                    </p>
+
+                </div>
+
+
+                <a href="mailto:info@example.com" class="btn btn-secondary">
+                    聯絡我們
+                </a>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =========================
+     Footer
+========================= -->
+
+    <div th:replace="~{layout/footer :: footer}"></div>
+
+
 </body>
+
 </html>

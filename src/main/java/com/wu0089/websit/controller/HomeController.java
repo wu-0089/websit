@@ -9,11 +9,11 @@ public class HomeController {
     
     @GetMapping("/")
     public String home() {
-        return "header";
-    }
-    @GetMapping("/products")
-    public String product() {
         return "index";
     }
+   // @GetMapping("/products")
+    //public String product() {
+    //    return "index";
+   // }
     
 }
