@@ -76,19 +76,30 @@ img {
     color: #f6c400;
 }
 
-.logo::after {
-    content: "";
-
-    position: absolute;
-    left: 0;
-    bottom: -7px;
-
-    width: 28px;
-    height: 3px;
-
-    background: #ffffff;
+/* pc 頁面 */
+.main-nav {
+    display: flex;
+    align-items: center;
+    gap: 34px;
 }
 
+/* 選單 */
+@media (max-width: 900px) {
+
+    .main-nav {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .main-nav.active {
+        display: flex;
+    }
+
+    .menu-button {
+        display: block;
+    }
+}
 
 /* Navigation */
 
