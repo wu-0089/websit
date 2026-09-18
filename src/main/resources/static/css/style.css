@@ -255,6 +255,36 @@ img {
 
 }
 
+/*Logout */
+.logout-form {
+    margin: 0;
+    padding: 0;
+}
+.logout-form button {
+    position: relative;
+
+    padding: 0;
+
+    border: none;
+    background: transparent;
+
+    color: #ffffff;
+
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        color 0.25s ease;
+}
+
+/* Hover */
+.logout-form button:hover {
+    color: #f6c400;
+}
+
 /* =========================
    Hero
 ========================= */
