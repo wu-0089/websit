@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: websit
+  datasource:
+    url: jdbc:mysql://mysql-2b52a406-websit.c.aivencloud.com:25975/defaultdb?sslMode=REQUIRED&serverTimezone=Asia/Taipei&characterEncoding=UTF-8
+    username: avnadmin
+    password: ${DB_PASSWORD}
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+server:
+  port: 8080

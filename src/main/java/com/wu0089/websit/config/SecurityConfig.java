@@ -10,10 +10,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
-
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.SecurityFilterChain;
+
+import com.wu0089.websit.repository.UserRepos;
 
 @Configuration
 public class SecurityConfig {
@@ -70,16 +70,19 @@ public class SecurityConfig {
      * 使用者目前存在記憶體
      */
     @Bean
-    public UserDetailsService userDetailsService(
-            PasswordEncoder passwordEncoder) {
+public UserDetailsService userDetailsService(UserRepos userRepos) {
 
-        UserDetails admin = User
-                .withUsername("admin")
-                .password(passwordEncoder.encode("123456"))
-                .roles("ADMIN")
+    return username -> {
+
+        com.wu0089.websit.entity.User user =
+                userRepos.findByUsername(username)
+                        .orElseThrow(() ->
+                                new UsernameNotFoundException("查無此使用者"));
+
+        return User
+                .withUsername(user.getUsername())
+                .password(user.getPassword())
+                .roles(user.getRole())
                 .build();
-
-        return new InMemoryUserDetailsManager(admin);
-    }
+    };
 }
-
