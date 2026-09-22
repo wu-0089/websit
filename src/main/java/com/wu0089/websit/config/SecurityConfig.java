@@ -4,11 +4,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.SecurityFilterChain;
@@ -25,7 +24,7 @@ public class SecurityConfig {
         http.authorizeHttpRequests(auth -> auth
 
                 // 需要登入
-                .requestMatchers("/logout" 
+                .requestMatchers("/logout","/services" 
                                  ).authenticated()
                 
                 // 其他頁面不用
@@ -39,7 +38,7 @@ public class SecurityConfig {
                 .loginPage("/login")
 
                 // 登入成功後回首頁
-                .defaultSuccessUrl("/", true)
+                .defaultSuccessUrl("/")
 
                 .permitAll()
             )
@@ -56,19 +55,11 @@ public class SecurityConfig {
         return http.build();
     }
 
-
     @Bean
     public PasswordEncoder passwordEncoder() {
-
-        return PasswordEncoderFactories
-                .createDelegatingPasswordEncoder();
+    return new BCryptPasswordEncoder();
     }
 
-
-    /*
-     * 暫時測試用
-     * 使用者目前存在記憶體
-     */
     @Bean
 public UserDetailsService userDetailsService(UserRepos userRepos) {
 
@@ -85,4 +76,5 @@ public UserDetailsService userDetailsService(UserRepos userRepos) {
                 .roles(user.getRole())
                 .build();
     };
+}
 }

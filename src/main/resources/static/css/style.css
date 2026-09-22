@@ -279,10 +279,28 @@ img {
     transition:
         color 0.25s ease;
 }
+.logout-form button::after {
+    content: "";
 
+    position: absolute;
+
+    left: 0;
+    bottom: -8px;
+
+    width: 0;
+    height: 2px;
+
+    background: #f6c400;
+
+    transition:
+        width 0.25s ease;
+}
 /* Hover */
 .logout-form button:hover {
     color: #f6c400;
+}
+.logout-form button:hover::after {
+    width: 100%;
 }
 
 /* =========================

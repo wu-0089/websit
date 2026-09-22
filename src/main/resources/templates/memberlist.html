@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-TW" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>會員列表</title>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+</head>
+
+<body>
+    <div th:replace="~{layout/header :: header}"></div>
+
+    <main class="login-page">
+       <table border="1">
+            <tr>
+                <th>ID</th>
+                <th>帳號</th>
+                <th>Email</th>
+                <th>權限</th>
+                <th>建立時間</th>
+            </tr>
+
+            <tr th:each="user : ${users}">
+                <td th:text="${user.id}"></td>
+                <td th:text="${user.username}"></td>
+                <td th:text="${user.email}"></td>
+                <td th:text="${user.role}"></td>
+                <td th:text="${user.createtime}"></td>
+            </tr>
+       </table>
+    </main>
+
+</body>
+
+<footer>
+    <div th:replace="~{layout/footer :: footer}"></div>
+</footer>

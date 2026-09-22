@@ -9,6 +9,6 @@ import com.wu0089.websit.entity.User;
 public interface UserRepos extends JpaRepository<User, Integer> {
 
     Optional<User> findByUsername(String username);
-
+    
 }
 
