@@ -24,7 +24,7 @@ public class SecurityConfig {
         http.authorizeHttpRequests(auth -> auth
 
                 // 需要登入
-                .requestMatchers("/logout","/services" 
+                .requestMatchers("/logout","/services","product/add" 
                                  ).authenticated()
                 
                 // 其他頁面不用
