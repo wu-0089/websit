@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-TW" xmlns:th="http://www.thymeleaf.org"> 
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>汽車零配件、周邊商品</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<div th:replace="~{layout/header :: header}"></div>
+
+<section id="products" class="section section-light">
+
+    <div class="container">
+
+        <!-- Product 標題 -->
+        <div class="section-heading">
+
+            <p class="section-label">
+                Product商品
+            </p>
+
+            <h2>
+                精選產品
+            </h2>
+
+            <p>
+                提供多元汽車相關產品、配件與用品。
+            </p>
+
+        </div>
+
+        <!-- Product 卡片 -->
+        <div class="product-grid">
+
+            <!-- 商品 1 -->
+            <article class="product-card">
+
+                <div class="product-image">
+                    <img src="/images/messageImage_1789455437952.jpg" alt="E-CANz10">
+                </div>
+
+                <div class="product-body">
+
+                    <p class="product-category">
+                        電子後照鏡
+                    </p>
+
+                    <h3>
+                        E-CAN Z10前後雙錄電子後照鏡
+                    </h3>
+
+
+                    <div class="product-specs">
+
+                        <div class="product-spec">
+                            <span>品牌</span>
+                            <strong>E-CAN伊鑑科技</strong>
+                        </div>
+
+                        <div class="product-spec">
+                            <span>型號</span>
+                            <strong>Z10</strong>
+                        </div>
+
+                        <div class="product-spec">
+                            <span>規格</span>
+                            <strong></strong>
+                        </div>
+
+                    </div>
+
+
+                    <p class="product-description">
+                        舒適型轎車輪胎，兼顧舒適性、穩定性與日常行駛表現。
+                    </p>
+
+
+                    <a href="#" class="product-link">
+                        查看詳細
+                        <span>→</span>
+                    </a>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- 商品 2 -->
+            <article class="product-card">
+
+                <div class="product-image">
+                    <img src="/images/product-02.jpg" alt="汽車電瓶">
+                </div>
+
+                <div class="product-body">
+
+                    <p class="product-category">
+                        電瓶
+                    </p>
+
+                    <h3>
+                        汽車電瓶 S5 AGM
+                    </h3>
+
+
+                    <div class="product-specs">
+
+                        <div class="product-spec">
+                            <span>品牌</span>
+                            <strong>BOSCH</strong>
+                        </div>
+
+                        <div class="product-spec">
+                            <span>型號</span>
+                            <strong>S5 AGM</strong>
+                        </div>
+
+                        <div class="product-spec">
+                            <span>規格</span>
+                            <strong>12V 70Ah</strong>
+                        </div>
+
+                    </div>
+
+
+                    <p class="product-description">
+                        高性能汽車電瓶，適用於需要穩定啟動與供電的車輛。
+                    </p>
+
+
+                    <a href="#" class="product-link">
+                        查看詳細
+                        <span>→</span>
+                    </a>
+
+                </div>
+
+            </article>
+
+            <!-- 商品 3 -->
+            <article class="product-card">
+
+                <div class="product-image">
+                    <img src="/images/product-03.jpg" alt="汽車機油">
+                </div>
+
+                <div class="product-body">
+
+                    <p class="product-category">
+                        機油
+                    </p>
+
+                    <h3>
+                        CASTROL EDGE
+                    </h3>
+
+
+                    <div class="product-specs">
+
+                        <div class="product-spec">
+                            <span>品牌</span>
+                            <strong>CASTROL</strong>
+                        </div>
+
+                        <div class="product-spec">
+                            <span>型號</span>
+                            <strong>EDGE</strong>
+                        </div>
+
+                        <div class="product-spec">
+                            <span>規格</span>
+                            <strong>5W-30 / 4L</strong>
+                        </div>
+
+                    </div>
+
+
+                    <p class="product-description">
+                        全合成汽車機油，提供引擎良好的潤滑與保護。
+                    </p>
+
+
+                    <a href="#" class="product-link">
+                        查看詳細
+                        <span>→</span>
+                    </a>
+
+                </div>
+
+            </article>
+
+
+        </div>
+
+    </div>
+
+    </body>
+
+    <footer>
+        <div th:replace="~{layout/footer :: footer}"></div>
+    </footer>
+
+</section>
