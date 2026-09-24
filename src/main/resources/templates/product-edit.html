@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>新增商品</title>
+</head>
+
+<body>
+
+    <h1>新增商品</h1>
+
+    <form th:action="@{/products/edit}"
+          method="post"
+          enctype="multipart/form-data">
+
+        <!-- 告訴 Controller：這次是新增 -->
+        <input type="hidden" name="action" value="add">
+
+        <div>
+            <label for="name">商品名稱：</label>
+            <input
+                type="text"
+                id="name"
+                name="name"
+                required>
+        </div>
+
+        <br>
+
+        <div>
+            <label for="category">商品分類：</label>
+            <input
+                type="text"
+                id="category"
+                name="category"
+                required>
+        </div>
+
+        <br>
+
+        <div>
+            <label for="price">商品價格：</label>
+            <input
+                type="number"
+                id="price"
+                name="price"
+                min="0"
+                required>
+        </div>
+
+        <br>
+
+        <div>
+            <label for="stock">商品庫存：</label>
+            <input
+                type="number"
+                id="stock"
+                name="stock"
+                min="0"
+                required>
+        </div>
+
+        <br>
+
+        <div>
+            <label for="imageFile">商品圖片：</label>
+            <input
+                type="file"
+                id="imageFile"
+                name="imageFile"
+                accept="image/*"
+                required>
+        </div>
+
+    <br>
+
+    <a th:href="@{/products}">回公開頁</a>
+
+        <br>
+
+        <button type="submit">新增商品</button>
+
+    </form>
+
+    <h2>目前商品庫存</h2>
+
+    <table border="1">
+
+        <tr>
+            <th>ID</th>
+            <th>商品名稱</th>
+            <th>價格</th>
+            <th>庫存</th>
+        </tr>
+
+        <tr th:each="product : ${products}">
+            <td th:text="${product.id}"></td>
+            <td th:text="${product.name}"></td>
+            <td th:text="${product.price}"></td>
+            <td th:text="${product.stock}"></td>
+        </tr>
+
+    </table>
+
+    <br>
+
+    <a th:href="@{/products}">返回商品管理</a>
+
+</body>
+
+</html>

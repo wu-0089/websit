@@ -18,10 +18,10 @@ public class Products {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String  products;
+    private String  name;
     private String  category;//種類
     private String  description;
     private Integer price;
-    private Integer amount;
+    private Integer stock;
     private LocalDateTime createtime;
 }
