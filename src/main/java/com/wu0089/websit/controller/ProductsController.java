@@ -34,6 +34,8 @@ public class ProductsController {
         @RequestParam(required = false) Integer id,
         Model model) {
 
+            model.addAttribute("")
+
         switch (action) {
 
             case "edit"  :

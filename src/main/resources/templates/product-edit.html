@@ -10,12 +10,12 @@
 
     <h1>新增商品</h1>
 
-    <form th:action="@{/products/edit}"
+    <form th:action="@{/products}"
           method="post"
           enctype="multipart/form-data">
 
         <!-- 告訴 Controller：這次是新增 -->
-        <input type="hidden" name="action" value="add">
+        <input type="hidden" name="action" value="edit">
 
         <div>
             <label for="name">商品名稱：</label>
@@ -25,8 +25,6 @@
                 name="name"
                 required>
         </div>
-
-        <br>
 
         <div>
             <label for="category">商品分類：</label>
@@ -48,9 +46,6 @@
                 min="0"
                 required>
         </div>
-
-        <br>
-
         <div>
             <label for="stock">商品庫存：</label>
             <input
@@ -60,9 +55,6 @@
                 min="0"
                 required>
         </div>
-
-        <br>
-
         <div>
             <label for="imageFile">商品圖片：</label>
             <input
@@ -72,10 +64,19 @@
                 accept="image/*"
                 required>
         </div>
+        <div>
+            <label for="desc">商品介紹：</label>
+            <input
+                type="text"
+                id="text"
+                name="desc"
+                accept="desc"
+                required>
+        </div>
 
-    <br>
+     <br>
 
-    <a th:href="@{/products}">回公開頁</a>
+     <a th:href="@{/products}">回公開頁</a>
 
         <br>
 
@@ -94,7 +95,7 @@
             <th>庫存</th>
         </tr>
 
-        <tr th:each="product : ${products}">
+        <tr th:each="product : ${Products}">
             <td th:text="${product.id}"></td>
             <td th:text="${product.name}"></td>
             <td th:text="${product.price}"></td>
