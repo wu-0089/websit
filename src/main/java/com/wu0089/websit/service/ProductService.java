@@ -32,7 +32,7 @@ public class ProductService {
            return productRepos.findAll();
         }
 
-        public Map<String, List<Products>> findAllByCaregory(){
+        public Map<String, List<Products>> findAllByCategory(){
             return productRepos.findAll().stream()
                                 .collect(Collectors.groupingBy(
                                     Products::getCategory,

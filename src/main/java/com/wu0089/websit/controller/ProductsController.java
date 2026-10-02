@@ -34,8 +34,6 @@ public class ProductsController {
         @RequestParam(required = false) Integer id,
         Model model) {
 
-            model.addAttribute("")
-
         switch (action) {
 
             case "edit"  :
@@ -57,8 +55,9 @@ public class ProductsController {
     }
 
     private String showPage(Model model){
-        List <Products> products = productService.findAll();
-        model.addAttribute("products", products);
+        model.addAttribute("productsByCategory", productService.findAllByCategory());
+       // List <Products> products = productService.findAll();
+       // model.addAttribute("products", products);
         return "products";
     }
 
