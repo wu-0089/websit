@@ -1,61 +1,291 @@
 <!DOCTYPE html>
-<html lang="zh-TW" xmlns:th="http://www.thymeleaf.org"> 
-    
+<html lang="zh-TW" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>汽車零配件、周邊商品</title>
+
+    <title>商品列表</title>
+
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 
 <body>
+    <!-- Header -->
+    <div th:replace="~{layout/header :: header}"></div>
 
-<div th:replace="~{layout/header :: header}"></div>
+    <main>
+        <section class="section section-light">
+            <div class="container">
+                <!-- 標題 -->
+                <div class="section-heading">
 
-<section id="products" class="section section-light">
+                    <div class="section-label">PRODUCTS</div>
 
-    <div class="container">
+                    <h2>商品列表</h2>
 
-        <!-- Product 標題 -->
-        <div class="section-heading">
+                    <p>選擇商品分類，查看目前提供的商品</p>
 
-            <p class="section-label">
-                Product商品
-            </p>
-
-            <h2>
-                精選產品
-            </h2>
-
-            <p>
-                提供多元汽車相關產品、配件與用品。
-            </p>
-
-        </div>
-
-        <div th:each="category : ${productsByCategory}">
-            產品分類：<h2 th:text="${category.key}"></h2>
-            <!-- 這個分類底下的商品 -->
-                <div class="product-card" th:each="product : ${category.value}">
-                    品名：<h3 class="product-card h3" th:text="${product.name}"></h3>
-
-                <p>
-                    庫存：
-                    <span th:text="${product.stock}"></span>
-                </p>
-                <p>
-                    商品介紹：
-                    <span th:text="${product.description}"></span>
-                </p>
                 </div>
-        </div>
 
-    </div>
+                <!-- 商品區域 -->
+                <div class="product-layout">
 
-    </body>
+                    <!-- 左側分類 -->
+                    <aside class="product-sidebar">
 
+                        <div class="product-sidebar-title">
+                            商品分類
+                        </div>
+
+                        <button type="button"
+                                class="category-button active"
+                                onclick="filterProducts('all', this)">
+                            全部商品
+                        </button>
+
+                        <!-- 從資料庫取得分類 -->
+                        <button type="button"
+                                class="category-button"
+                                th:each="category : ${productsByCategory}"
+                                th:text="${category.key}"
+                                th:attr="data-category=${category.key}"
+                                onclick="filterProducts(this.dataset.category, this)">
+                            商品分類
+                        </button>
+
+                    </aside>
+
+                    <!-- 右側商品 -->
+                    <div class="product-content">
+
+                        <!-- 沒有商品 -->
+                        <div
+                                class="no-products"
+                                th:if="${productsByCategory == null or #maps.isEmpty(productsByCategory)}">
+
+                            目前沒有商品
+
+                        </div>
+
+                        <!-- 分類 -->
+                        <div
+                                class="product-category-section"
+                                th:each="category : ${productsByCategory}"
+                                th:attr="data-category=${category.key}">
+
+
+                            <!-- 分類標題 -->
+                            <div class="product-category-title">
+
+                                <span th:text="${category.key}">
+                                    商品分類
+                                </span>
+
+                            </div>
+
+                            <!-- 商品卡 -->
+                            <div class="product-grid">
+
+                                <a
+                                        class="product-card-link"
+                                        th:each="product : ${category.value}"
+                                        th:href="@{/products(action='detail', id=${product.id})}">
+
+
+                                    <article class="product-card">
+
+
+                                        <!-- 商品圖片 -->
+                                        <div
+                                                class="product-image"
+                                                th:if="${product.imageBase64 != null}">
+
+                                            <img
+                                                    th:src="'data:' + ${product.imageType} + ';base64,' + ${product.imageBase64}"
+                                                    th:alt="${product.name}">
+
+                                        </div>
+
+
+                                        <!-- 沒有圖片 -->
+                                        <div
+                                                class="product-image product-image-empty"
+                                                th:unless="${product.imageBase64 != null}">
+
+                                            <span>
+                                                暫無圖片
+                                            </span>
+
+                                        </div>
+
+
+
+                                        <!-- 商品內容 -->
+                                        <div class="product-body">
+
+
+                                            <!-- 分類 -->
+                                            <div
+                                                    class="product-category"
+                                                    th:text="${category.key}">
+
+                                                商品分類
+
+                                            </div>
+
+
+
+                                            <!-- 商品名稱 -->
+                                            <h3
+                                                    th:text="${product.name}">
+
+                                                商品名稱
+
+                                            </h3>
+
+
+
+                                            <!-- 商品資訊 -->
+                                            <div class="product-specs">
+
+
+                                                <div class="product-spec">
+
+                                                    <span>
+                                                        價格
+                                                    </span>
+
+                                                    <strong>
+                                                        NT$
+                                                        <span th:text="${product.price}">
+                                                            0
+                                                        </span>
+                                                    </strong>
+
+                                                </div>
+
+
+                                                <div class="product-spec">
+
+                                                    <span>
+                                                        庫存
+                                                    </span>
+
+                                                    <strong
+                                                            th:text="${product.stock}">
+                                                        0
+                                                    </strong>
+
+                                                </div>
+
+
+                                            </div>
+
+
+
+                                            <!-- 商品介紹 -->
+                                            <div
+                                                    class="product-description"
+                                                    th:text="${product.description}">
+
+                                                商品介紹
+
+                                            </div>
+
+                                            <!-- 查看詳細 -->
+                                            <div class="product-link">
+
+                                                查看詳細
+
+                                                <span>
+                                                    →
+                                                </span>
+
+                                            </div>
+
+
+                                        </div>
+
+                                    </article>
+
+                                </a>
+
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- Footer -->
     <footer>
+
         <div th:replace="~{layout/footer :: footer}"></div>
+
     </footer>
 
-</section>
+    <script>
+
+        function filterProducts(category, button) {
+
+            // 所有分類區塊
+            const sections =
+                document.querySelectorAll('.product-category-section');
+
+            // 所有分類按鈕
+            const buttons =
+                document.querySelectorAll('.category-button');
+
+            // 移除所有 active
+            buttons.forEach(function (item) {
+
+                item.classList.remove('active');
+
+            });
+
+            // 加入目前 active
+            button.classList.add('active');
+
+            // 顯示 / 隱藏商品分類
+            sections.forEach(function (section) {
+
+                const sectionCategory =
+                    section.dataset.category;
+
+                // 全部商品
+                if (category === 'all') {
+                    section.style.display = '';
+                }
+                // 指定分類
+                else if (sectionCategory === category) {
+
+                    section.style.display = '';
+                }
+                // 其他分類隱藏
+                else {
+                    section.style.display = 'none';
+                }
+            });
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>
+
