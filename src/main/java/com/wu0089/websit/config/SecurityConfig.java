@@ -25,7 +25,7 @@ public class SecurityConfig {
 
                 // 需要登入
                 //.requestMatchers("/products/add").hasRole("ADMIN")
-                .requestMatchers("/logout","/services" 
+                .requestMatchers("/logout","/services","/products/edit"
                                  ).authenticated()
                 
                 // 其他頁面不用

@@ -32,74 +32,32 @@ public class ProductsController {
     private final ProductService productService;
     
     @GetMapping ("/products")
-    public String products(
-        @RequestParam(defaultValue = "list") String action,
-        @RequestParam(required = false) Integer id,
-        Model model) {
-
-        switch (action) {
-
-            case "edit"  :
-                return showaddPage(model);
-            
-            case "list" :
-                return showPage(model);
-            default:
-                return showPage(model);
+    public String products(Model model) {
+        model.addAttribute("productsByCategory", productService.findAllByCategory());
+        return "products";
         }
         
-   
-    }
-
-    private String showaddPage(Model model){
+    @GetMapping("products/edit")
+    public String productedit(Model model) {
         model.addAttribute("product", new Products());
         model.addAttribute("Products", productService.findAll());
         return "product-edit";
     }
 
-    private String showPage(Model model){
-        model.addAttribute("productsByCategory", productService.findAllByCategory());
-       // List <Products> products = productService.findAll();
-       // model.addAttribute("products", products);
-        return "products";
-    }
-
-   @PostMapping("/products")
-    public String postMethodName(
-            Products products,
-            @RequestParam(
-                    value = "imageFile",
-                    required = false
-            ) MultipartFile imageFile
+   @PostMapping("/products/edit")
+    public String postMethodName( String action,
+                                 Products products,
+                    @RequestParam(value = "imageFile",
+                                required = false
+                                 ) MultipartFile imageFile
     ) throws IOException {
 
-        swith:
-        // 有選圖片
-        if (imageFile != null && !imageFile.isEmpty()) {
-
-            // 圖片轉 byte[]
-            byte[] imageBytes = imageFile.getBytes();
-
-            // byte[] 轉 Base64
-            String imageBase64 =
-                    Base64.getEncoder()
-                          .encodeToString(imageBytes);
-
-            // 取得圖片格式
-            String imageType =
-                    imageFile.getContentType();
-
-            // 存進 Products
-            products.setImageBase64(imageBase64);
-            products.setImageType(imageType);
-        }
-
-
-        // 新增
-        productService.add(products);
-
-
-        return "redirect:/products?action=edit";
+        switch (action) {
+            case "add" -> productService.add(products, imageFile); 
+            case "delete" -> productService.delete(products.getId());
+          //  case "update" -> 
+                
     }
-
+        return "redirect:/products/edit";
+    }
 }
