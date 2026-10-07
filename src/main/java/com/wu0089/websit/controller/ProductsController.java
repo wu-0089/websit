@@ -38,9 +38,14 @@ public class ProductsController {
         }
         
     @GetMapping("products/edit")
-    public String productedit(Model model) {
+    public String productedit(@RequestParam (required = false)Integer editId,
+                                Model model) {
         model.addAttribute("product", new Products());
+
         model.addAttribute("Products", productService.findAll());
+
+        model.addAttribute("editId", editId);
+
         return "product-edit";
     }
 
