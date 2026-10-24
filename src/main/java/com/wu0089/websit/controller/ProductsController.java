@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -25,19 +26,20 @@ import org.springframework.web.bind.annotation.PostMapping;
  */
 
 
+@RequestMapping("/products")
 @RequiredArgsConstructor 
 @Controller 
 public class ProductsController {
 
     private final ProductService productService;
     
-    @GetMapping ("/products")
+    @GetMapping
     public String products(Model model) {
         model.addAttribute("productsByCategory", productService.findAllByCategory());
         return "products";
         }
         
-    @GetMapping("products/edit")
+    @GetMapping("/edit")
     public String productedit(@RequestParam (required = false)Integer editId,
                                 Model model) {
         model.addAttribute("product", new Products());
@@ -49,7 +51,7 @@ public class ProductsController {
         return "product-edit";
     }
 
-   @PostMapping("/products/edit")
+   @PostMapping("/edit")
     public String postMethodName( String action,
                                  Products products,
                     @RequestParam(value = "imageFile",

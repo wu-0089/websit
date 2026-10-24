@@ -86,7 +86,8 @@ img {
     gap: 34px;
 }
 
-.main-nav a {
+.main-nav a ,
+.main-nav form button {
     position: relative;
 
     color: #ffffff;
@@ -98,7 +99,16 @@ img {
         color 0.25s ease;
 }
 
-.main-nav a::after {
+.main-nav form button{
+    border: none;
+    background: transparent;
+    padding: 0;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.main-nav a::after,
+.main-nav form button::after {
     content: "";
 
     position: absolute;
@@ -115,11 +125,13 @@ img {
         width 0.25s ease;
 }
 
-.main-nav a:hover {
+.main-nav a:hover,
+.main-nav form button:hover {
     color: #f6c400;
 }
 
-.main-nav a:hover::after {
+.main-nav a:hover::after,
+.main-nav form button:hover::after {
     width: 100%;
 }
 
@@ -161,9 +173,9 @@ img {
     /* 手機選單 */
     .main-nav {
 
-        position: absolute;
+        position: fixed;
 
-        top: 100%;
+        top: 68px;
         right: 0;
 
         width: 240px;
@@ -174,7 +186,7 @@ img {
 
         gap: 0;
 
-        padding: 8px 0;
+        padding: 6px 0;
 
         background: rgba(15, 15, 15, 0.96);
 
@@ -215,8 +227,8 @@ img {
 
 
     /* 手機選單文字 */
-    .main-nav a {
-
+    .main-nav a ,
+    .main-nav form button{
         width: 100%;
 
         padding: 15px 22px;
@@ -235,13 +247,14 @@ img {
             color 0.2s ease;
     }
 
-
-    .main-nav a:last-child {
+    .main-nav a:last-child,
+    .main-nav form button :last-child {
         border-bottom: none;
     }
 
 
-    .main-nav a:hover {
+    .main-nav a:hover,
+    .main-nav form button:hover {
         color: #f6c400;
 
         background: #1c1c1c;
@@ -249,7 +262,8 @@ img {
 
 
     /* 手機版不需要桌面底線動畫 */
-    .main-nav a::after {
+    .main-nav a::after,
+    .main-nav form button::after {
         display: none;
     }
 
@@ -606,7 +620,7 @@ img {
 
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
 
     gap: 24px;
 }
@@ -616,7 +630,6 @@ img {
 
 .product-card {
     min-height: 550px;
-
     display: flex;
     flex-direction: column;
 

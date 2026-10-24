@@ -1,6 +1,5 @@
 <header class="site-header">
     <div class="container nav-container">
-
         <a th:href="@{/}" class="logo">
             VR輪胎館
         </a>
@@ -8,22 +7,22 @@
         <nav class="main-nav">
             
             <a th:href="@{/}">首頁</a>
-            <a href="/login">登入</a>
+            <a href="/login" sec:authorize="!isAuthenticated()">登入</a>
             <a href="/products">產品</a>
             <a href="/services">服務</a>
             <a href="/about">關於我們</a>
             <a href="#footer">聯絡我們</a>    
-            <a href="/member">會員列表</a>
-
-            <a href="/products/edit">新增商品</a>
-
-            <form th:action="@{/logout}" method="post" class="logout-form">
-                 <button type="submit"> 登出 </button>
+            <a href="/member"
+            sec:authorize="isAuthenticated()" >會員列表</a>
+            <a href="/products/edit"
+            sec:authorize="isAuthenticated()">新增商品</a>
+            <form th:action="@{/logout}" method="post">
+                 <button type="submit" class="logout" sec:authorize="isAuthenticated()"> 登出 </button>
             </form>
         </nav>
         <!--漢堡按鈕-->
         <button class="menu-button" type="button" >
-            三
+            ≡
         </button>    
         <script th:src="@{/js/burger.js}"></script>
     </div>
