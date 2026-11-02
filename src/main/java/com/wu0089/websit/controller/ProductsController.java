@@ -62,7 +62,7 @@ public class ProductsController {
         switch (action) {
             case "add" -> productService.add(products, imageFile); 
             case "delete" -> productService.delete(products.getId());
-          //  case "update" -> 
+            case "update" -> productService.update(products.getId(), products);
                 
     }
         return "redirect:/products/edit";

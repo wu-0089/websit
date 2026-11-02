@@ -43,7 +43,9 @@ public class ProductService {
             productRepos.save(products);
         } 
 
-        //public void update()
+        public void update(Integer id, Products products){
+            productRepos.save(products);
+        }
 
         public void delete(Integer id){
             productRepos.deleteById(id);
