@@ -30,9 +30,9 @@ public class RegisterController {
 
     @PostMapping("/register")
     public String postMethodName(@RequestParam String username,
-                                 @RequestParam String password,
-                                 @RequestParam String email,
-                                 @RequestParam String confirmPassword,
+                                @RequestParam String password,
+                                @RequestParam String email,
+                                @RequestParam String confirmPassword,
                                                Model model) {
         if(!password.equals(confirmPassword)){
             model.addAttribute("erro", "兩次密碼不一致");
