@@ -11,5 +11,12 @@ public class HomeController {
     public String home() {
         return "index";
     }
-
+     @GetMapping("/about")
+    public String about() {
+        return "coming-soon";
+    }
+     @GetMapping("/services")
+    public String services() {
+        return "coming-soon";
+    }
 }

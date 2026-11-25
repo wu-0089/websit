@@ -2,7 +2,6 @@
 <html lang="zh-TW" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-
     <meta charset="UTF-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,16 +14,13 @@
 
 <body>
 
-
     <!--- Header -->
 
     <div th:replace="~{layout/header :: header}"></div>
 
-
     <!---Main-->
 
     <main>
-
 
         <!-- Hero -->
         <section class="hero">
@@ -49,7 +45,7 @@
 
                     <div class="hero-buttons">
 
-                        <a href="#products" class="btn btn-primary">
+                        <a href="/products" class="btn btn-primary">
                             探索產品
                         </a>
 
@@ -76,9 +72,7 @@
         </section>
 
 
-        <!-- =========================
-         Products
-    ========================= -->
+        <!--Products -->
 
         <section id="products" class="section section-light">
 
@@ -266,9 +260,7 @@
         </section>
 
 
-        <!-- =========================
-         About
-    ========================= -->
+        <!-- About -->
 
         <section id="about" class="section section-light">
 

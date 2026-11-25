@@ -4,16 +4,15 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
-
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.SecurityFilterChain;
+
+import com.wu0089.websit.repository.UserRepos;
 
 @Configuration
 public class SecurityConfig {
@@ -25,7 +24,8 @@ public class SecurityConfig {
         http.authorizeHttpRequests(auth -> auth
 
                 // 需要登入
-                .requestMatchers("/logout" 
+                //.requestMatchers("/products/add").hasRole("ADMIN")
+                .requestMatchers("/logout","/services","/products/edit"
                                  ).authenticated()
                 
                 // 其他頁面不用
@@ -39,7 +39,7 @@ public class SecurityConfig {
                 .loginPage("/login")
 
                 // 登入成功後回首頁
-                .defaultSuccessUrl("/", true)
+                .defaultSuccessUrl("/")
 
                 .permitAll()
             )
@@ -56,30 +56,26 @@ public class SecurityConfig {
         return http.build();
     }
 
-
     @Bean
     public PasswordEncoder passwordEncoder() {
-
-        return PasswordEncoderFactories
-                .createDelegatingPasswordEncoder();
+    return new BCryptPasswordEncoder();
     }
 
-
-    /*
-     * 暫時測試用
-     * 使用者目前存在記憶體
-     */
     @Bean
-    public UserDetailsService userDetailsService(
-            PasswordEncoder passwordEncoder) {
+public UserDetailsService userDetailsService(UserRepos userRepos) {
 
-        UserDetails admin = User
-                .withUsername("admin")
-                .password(passwordEncoder.encode("123456"))
-                .roles("ADMIN")
+    return username -> {
+
+        com.wu0089.websit.entity.User user =
+                userRepos.findByUsername(username)
+                        .orElseThrow(() ->
+                                new UsernameNotFoundException("查無此使用者"));
+
+        return User
+                .withUsername(user.getUsername())
+                .password(user.getPassword())
+                .roles(user.getRole())
                 .build();
-
-        return new InMemoryUserDetailsManager(admin);
-    }
+    };
 }
-
+}

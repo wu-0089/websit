@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
     //開關
     menuNButton.addEventListener("click", function(){
         const isopen = mainNav.classList.toggle("active")
-        menuNButton.textContent = isopen ? "X" : "三";
+        menuNButton.textContent = isopen ? "×" : "≡";
    
             }
         )

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-TW" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>會員註冊</title>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+</head>
+
+<body>
+    <div th:replace="~{layout/header :: header}"></div>
+
+    <main class="login-page">
+        <h1>註冊</h1>
+        <form action="/register" method="post">
+            
+            <input type="hidden"
+                th:name="${_csrf.parameterName}"
+                th:value="${_csrf.token}">
+
+            <div>
+                <label for="username">帳號</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+
+            <div>   
+                <label for="password">密碼</label> 
+                <input type="password" id="password" name="password" required>
+                
+                <label for="confirmPassword">確認密碼</label>
+                <input type="confirmPassword" id="confirmPassword" name="confirmPassword" required>
+
+                <label for="email">信箱</label>
+                <input type="email" id="email" name="email" >
+            </div>
+        
+                <button type="submit"> 註冊 </button>
+
+        </form>    
+            <a href="/login">返回登入</a>
+            
+            <div th:if="${error}" class="login-erro" th:text="${error}">
+
+            </div>
+
+    </main>
+
+</body>
+
+<footer>
+    <div th:replace="~{layout/footer :: footer}"></div>
+</footer>
