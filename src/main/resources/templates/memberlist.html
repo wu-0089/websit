@@ -24,6 +24,7 @@
                 <th>Email</th>
                 <th>權限</th>
                 <th>建立時間</th>
+                <th>操作</th>
             </tr>
 
             <tr th:each="user : ${users}">
@@ -32,6 +33,12 @@
                 <td th:text="${user.email}"></td>
                 <td th:text="${user.role}"></td>
                 <td th:text="${user.createtime}"></td>
+                <td>
+                    <form method="post" th:action="@{/member/{id}(id=${user.id})}">
+                        <input type="hidden" name="_method" value="delete" />
+                        <button>刪除</button>
+                    </form>
+                </td>
             </tr>
        </table>
     </main>

@@ -9,19 +9,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.wu0089.websit.entity.User;
 import com.wu0089.websit.repository.UserRepos;
+import com.wu0089.websit.service.MemberService;
+
+import lombok.RequiredArgsConstructor;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller 
+@RequiredArgsConstructor 
 public class RegisterController {
     
-    private final UserRepos userRepos;
-    private final PasswordEncoder passwordEncoder;
-    public RegisterController(UserRepos userRepos, PasswordEncoder passwordEncoder){
-        this.userRepos=         userRepos;
-        this.passwordEncoder=   passwordEncoder;
-    }
+    private  final MemberService memberService;
+
 
     @GetMapping ("/register")
     public String register(){
@@ -29,27 +30,23 @@ public class RegisterController {
     } 
 
     @PostMapping("/register")
-    public String postMethodName(@RequestParam String username,
+    public String postMethodName(User user,
                                 @RequestParam String password,
-                                @RequestParam String email,
                                 @RequestParam String confirmPassword,
                                                Model model) {
         if(!password.equals(confirmPassword)){
             model.addAttribute("erro", "兩次密碼不一致");
             return "register";
         }
-        //Bcrypt加密
-        String encodPassword = passwordEncoder.encode(password);
-        
         //建立user物件
-        User user = new User();
-        user.setUsername(username);
-        user.setPassword(encodPassword);
-        user.setEmail(email);
-        user.setCreatetime(LocalDateTime.now());
-        user.setRole("user");
+        // User user = new User();
+        // user.setUsername(username);
+        // user.setPassword(encodPassword);
+        // user.setEmail(email);
+        // user.setCreatetime(LocalDateTime.now());
+        // user.setRole("user");
         try {
-            userRepos.save(user);
+            memberService.register(user);
         } catch (Exception e) {
             throw new RuntimeException("註冊失敗"+ e.getMessage());
         }

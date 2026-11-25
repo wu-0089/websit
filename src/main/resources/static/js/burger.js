@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
     menuNButton.addEventListener("click", function(){
         const isopen = mainNav.classList.toggle("active")
         menuNButton.textContent = isopen ? "×" : "≡";
-   
+        
             }
         )
     }
