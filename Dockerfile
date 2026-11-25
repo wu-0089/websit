@@ -1,21 +1,26 @@
-# Docker 裡使用 Java 21
-FROM eclipse-temurin:21-jdk
+# ===== Build =====
+FROM maven:3.9.9-eclipse-temurin-21 AS build
 
-# 容器內的工作目錄
 WORKDIR /app
 
-# 把 GitHub 專案複製進 Docker
-COPY . .
+COPY pom.xml .
+COPY mvnw .
+COPY .mvn .mvn
 
-# 讓 Maven Wrapper 可以執行
-RUN chmod +x mvnw
+RUN mvn dependency:go-offline -DskipTests
 
-# 使用 Maven Wrapper 編譯 Spring Boot
-# 產生 target/*.jar
-RUN ./mvnw clean package -DskipTests
+COPY src src
 
-# 宣告網站使用 8080 Port
+RUN mvn clean package -DskipTests
+
+
+# ===== Run =====
+FROM eclipse-temurin:21-jre
+
+WORKDIR /app
+
+COPY --from=build /app/target/*.jar app.jar
+
 EXPOSE 8080
 
-# 啟動 Spring Boot
-CMD ["sh", "-c", "java -jar target/*.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
