@@ -1,14 +1,10 @@
 package com.wu0089.websit.controller;
 
-import java.time.LocalDateTime;
-
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.wu0089.websit.entity.User;
-import com.wu0089.websit.repository.UserRepos;
 import com.wu0089.websit.service.MemberService;
 
 import lombok.RequiredArgsConstructor;
